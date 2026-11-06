@@ -224,7 +224,7 @@ export const checkInSteps: {
   {
     icon: DoorOpen,
     title: 'Entre no chalé',
-    text: 'Abra o chalé com a chave do molho. Qualquer dificuldade no acesso, entre em contato imediatamente.',
+    text: 'Abra o chalé com a chave do molho. O interruptor das luzes fica na coluna preta ao lado da porta de vidro, perto da bancada. Qualquer dificuldade no acesso, entre em contato imediatamente.',
     photo: ab('interior'),
     alt: 'Interior do chalé',
   },
@@ -233,7 +233,7 @@ export const checkInSteps: {
 /* ----------------------------- Manual: itens ------------------------------- */
 
 export type UsageItem = {
-  id: 'wifi' | 'tv' | 'ar' | 'chuveiro' | 'cooktop' | 'microondas'
+  id: 'wifi' | 'interruptor' | 'tv' | 'ar' | 'chuveiro' | 'cooktop' | 'microondas'
   icon: LucideIcon
   title: string
   text: string
@@ -243,6 +243,7 @@ export type UsageItem = {
 
 export const usageItems: UsageItem[] = [
   { id: 'wifi', icon: Wifi, title: 'Wi-Fi', text: 'Conecte-se à rede do chalé.', photo: 'wifi.jpg', alt: 'Quadro com os dados do Wi-Fi sobre a mesa' },
+  { id: 'interruptor', icon: Lightbulb, title: 'Interruptor das luzes', text: 'O interruptor das luzes fica na coluna preta ao lado da porta de vidro, perto da bancada e da TV. Veja a seta na foto.', photo: 'interruptor.jpg', alt: 'Quarto do chalé com seta indicando o interruptor na coluna ao lado da porta de vidro' },
   { id: 'tv', icon: Tv, title: 'TV', text: 'Use o controle remoto para ligar a TV. Apps disponíveis: Netflix e YouTube. Faça logout ao final da estadia.', photo: ab('tv'), alt: 'TV fixada na parede de madeira' },
   { id: 'ar', icon: Wind, title: 'Ar-condicionado', text: 'Ligue pelo controle remoto. Temperatura recomendada entre 22° e 24°. Desligue ao sair do quarto.', photo: 'ar.jpg', alt: 'Ar-condicionado instalado no alto da parede' },
   { id: 'chuveiro', icon: ShowerHead, title: 'Chuveiro', text: 'Ajuste a temperatura antes do banho e aguarde alguns segundos para a água aquecer corretamente.', photo: ab('chuveiro'), alt: 'Chuveiro do banheiro' },
