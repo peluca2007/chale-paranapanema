@@ -107,7 +107,7 @@ export function Hero() {
             transition={{ duration: 0.7, delay: 0.15 }}
             className="mt-7 max-w-xl text-lg leading-relaxed text-ink/80"
           >
-            Um chalé privativo em estilo A-frame, a 300 m da Praça da Matriz. Conforto, privacidade e
+            Um chalé privativo de estilo contemporâneo, a 300 m da Praça da Matriz. Conforto, privacidade e
             tranquilidade para relaxar, curtir a natureza e viver momentos inesquecíveis.
           </motion.p>
 

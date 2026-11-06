@@ -141,7 +141,7 @@ export function Scene({ hour, pointer }: { hour: number; pointer: MotionValue<nu
       preserveAspectRatio="xMidYMid slice"
       className="block h-full w-full"
       role="img"
-      aria-label={`Ilustração do chalé em A durante o período: ${phaseLabel(hour).toLowerCase()}`}
+      aria-label={`Ilustração do chalé durante o período: ${phaseLabel(hour).toLowerCase()}`}
     >
       <defs>
         <linearGradient id={`${id}-sky`} x1="0" y1="0" x2="0" y2="1">

@@ -4,7 +4,7 @@ import { ArrowUpRight, MessageCircle } from 'lucide-react'
 import { booking, whatsappHref } from '../data/site'
 
 const WORDS = [
-  'Cabana A-frame',
+  'Estilo contemporâneo',
   'Fachada em vidro',
   'Ar-condicionado',
   'Wi-Fi',

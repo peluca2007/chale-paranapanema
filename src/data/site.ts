@@ -139,7 +139,7 @@ export const amenities: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: BedDouble, title: 'Cama de casal + auxiliar', text: 'Uma cama de casal e uma cama auxiliar de solteiro.' },
   { icon: CookingPot, title: 'Cozinha compacta', text: 'Cooktop, frigobar, micro-ondas, pia e bancada.' },
   { icon: Lock, title: 'Cofre', text: 'Para guardar documentos e objetos de valor.' },
-  { icon: Sparkles, title: 'Fachada em vidro', text: 'Cabana A-frame moderna, com deck e muita luz natural.' },
+  { icon: Sparkles, title: 'Fachada em vidro', text: 'Muita luz natural e vista para o gramado, com deck do lado de fora.' },
   { icon: ShowerHead, title: 'Banho quente', text: 'Chuveiro com água aquecida.' },
   { icon: Car, title: 'Estacionamento', text: 'Dentro do terreno, em frente aos coqueiros.' },
   { icon: PawPrint, title: 'Pet friendly', text: 'Pets de pequeno porte, mediante aviso prévio.' },
@@ -155,14 +155,14 @@ export const stats = [
 export type GalleryItem = { file: string; alt: string; caption: string; tall?: boolean }
 
 export const gallery: GalleryItem[] = [
-  { file: ab('fachada'), alt: 'Fachada do chalé em A, toda em vidro, com a cama aparecendo lá dentro', caption: 'Fachada em vidro' },
+  { file: ab('fachada'), alt: 'Fachada do chalé, toda em vidro, com a cama aparecendo lá dentro', caption: 'Fachada em vidro' },
   { file: ab('quartoJanela'), alt: 'Cama de casal diante do janelão triangular com vista para o gramado', caption: 'Acordar com essa vista' },
-  { file: ab('interior'), alt: 'Interior em madeira com teto em A, cama de casal e luminária', caption: 'Tudo em um só ambiente' },
+  { file: ab('interior'), alt: 'Interior em madeira com teto alto, cama de casal e luminária', caption: 'Tudo em um só ambiente' },
   { file: ab('chuveiro'), alt: 'Box do chuveiro com revestimento de madeira e janela alta', caption: 'Banheiro', tall: true },
   { file: ab('tvTrabalho'), alt: 'TV na parede, prateleiras e a área de trabalho ao fundo', caption: 'TV e área de trabalho' },
   { file: ab('cozinha'), alt: 'Bancada escura com pia, cooktop, cadeira e frigobar', caption: 'Cozinha compacta' },
   { file: ab('cama'), alt: 'Cama de casal arrumada sob o teto inclinado de madeira', caption: 'Cama de casal' },
-  { file: ab('lateral'), alt: 'Lateral do chalé com telhado metálico escuro descendo até o chão', caption: 'Arquitetura A-frame' },
+  { file: ab('lateral'), alt: 'Lateral do chalé com telhado metálico escuro descendo até o chão', caption: 'Arquitetura contemporânea' },
   { file: ab('pia'), alt: 'Pia redonda em pedra preta com espelho redondo', caption: 'Detalhes do banheiro', tall: true },
   { file: ab('bancadaBanheiro'), alt: 'Bancada da cozinha ao lado da porta do banheiro', caption: 'Bancada e banheiro' },
   { file: ab('tv'), alt: 'TV fixada na parede de madeira, com prateleiras ao lado', caption: 'Smart TV' },
@@ -171,9 +171,9 @@ export const gallery: GalleryItem[] = [
 
 /** Fotos da vitrine "Por dentro" (rolagem horizontal). */
 export const tour: { file: string; title: string; text: string }[] = [
-  { file: ab('fachada'), title: 'Fachada em vidro', text: 'Cabana A-frame moderna, com deck e luz natural o dia inteiro.' },
+  { file: ab('fachada'), title: 'Fachada em vidro', text: 'Estilo contemporâneo, com deck e luz natural o dia inteiro.' },
   { file: ab('quartoJanela'), title: 'O janelão', text: 'A cama fica de frente para o vidro: dá para acordar vendo o céu.' },
-  { file: ab('interior'), title: 'Madeira e aconchego', text: 'Um ambiente único, com teto alto em A e iluminação quente.' },
+  { file: ab('interior'), title: 'Madeira e aconchego', text: 'Um ambiente único, com teto alto de madeira e iluminação quente.' },
   { file: ab('tvTrabalho'), title: 'TV e trabalho', text: 'Smart TV com Netflix e YouTube, e uma bancada para o notebook.' },
   { file: ab('cozinha'), title: 'Cozinha compacta', text: 'Cooktop, frigobar, micro-ondas e pia para as refeições rápidas.' },
   { file: ab('banheiro'), title: 'Banheiro sofisticado', text: 'Pedra preta, madeira e chuveiro quente.' },
@@ -216,7 +216,7 @@ export const checkInSteps: {
   },
   {
     icon: Car,
-    title: 'Garagem',
+    title: 'Estacionamento',
     text: 'Entre pelo portão lateral e estacione na frente dos coqueiros.',
     photo: 'garagem.jpg',
     alt: 'Gramado onde se estaciona, em frente aos coqueiros',
@@ -350,7 +350,7 @@ export type Place = {
 }
 
 export const places: Place[] = [
-  { id: 'recinto', name: 'Recinto de Festa', km: 0.1, label: '100 m', angle: 205, blurb: 'Pertinho do chalé, para quem gosta de acompanhar os eventos da cidade.' },
+  { id: 'recinto', name: 'Recinto de Festas', km: 0.1, label: '100 m', angle: 205, blurb: 'Pertinho do chalé, para quem gosta de acompanhar os eventos da cidade.' },
   { id: 'praca', name: 'Praça da Matriz', km: 0.3, label: '300 m', angle: 275, blurb: 'O centro da cidade, a uma caminhada curta do chalé.' },
   { id: 'riviera5', name: 'Riviera de Santa Cristina V', km: 5, label: '5 km', angle: 335, blurb: 'Restaurantes, piscinas e lazer para toda a família, às margens da represa.' },
   { id: 'ilha', name: 'Ilha do Sol', km: 6, label: '6 km', angle: 55, blurb: 'Praia de água doce com acesso livre, rampa para barcos, área de pesca e um pôr do sol espetacular.' },

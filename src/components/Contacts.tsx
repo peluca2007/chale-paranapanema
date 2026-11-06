@@ -18,7 +18,22 @@ const ICONS: Record<string, LucideIcon> = {
 }
 
 export function Contacts() {
-  const host = site.keyContact.whatsapp
+  const people = [
+    site.whatsapp && {
+      label: 'Anfitrião',
+      name: 'Pedro Lucas',
+      text: 'Reservas, dúvidas e imprevistos durante a estadia: fale direto comigo.',
+      phone: site.whatsapp,
+      icon: House,
+    },
+    site.keyContact.whatsapp && {
+      label: 'Contato no local',
+      name: site.keyContact.name,
+      text: 'Mora na residência ao lado do portão de entrada: é com ela que você retira as chaves na chegada.',
+      phone: site.keyContact.whatsapp,
+      icon: KeyRound,
+    },
+  ].filter((p): p is Exclude<typeof p, '' | undefined | false> => Boolean(p))
 
   return (
     <section id="contatos" className="px-5 py-20">
@@ -47,22 +62,21 @@ export function Contacts() {
         </Reveal>
 
         <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {host && (
-            <li>
+          {people.map((person) => (
+            <li key={person.label}>
               <Reveal className="h-full">
                 <article className="flex h-full flex-col justify-between gap-6 rounded-3xl bg-sage-100 p-6 ring-1 ring-sage-300/60">
                   <div>
                     <span className="mb-4 grid h-12 w-12 place-items-center rounded-full bg-white text-sage-700">
-                      <House size={22} aria-hidden />
+                      <person.icon size={22} aria-hidden />
                     </span>
-                    <h3 className="font-display text-2xl">Anfitrião</h3>
-                    <p className="mt-2 leading-relaxed text-ink/70">
-                      Dúvidas, imprevistos ou a chave do chalé: fale direto com a gente.
-                    </p>
+                    <p className="text-sm font-semibold tracking-wide text-sage-700 uppercase">{person.label}</p>
+                    <h3 className="mt-1 font-display text-2xl">{person.name}</h3>
+                    <p className="mt-2 leading-relaxed text-ink/70">{person.text}</p>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     <a
-                      href={`https://wa.me/${host}`}
+                      href={`https://wa.me/${person.phone}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-sage-700 px-5 py-2.5 font-semibold text-white transition hover:-translate-y-0.5"
@@ -70,16 +84,16 @@ export function Contacts() {
                       <MessageCircle size={17} aria-hidden /> WhatsApp
                     </a>
                     <a
-                      href={`tel:+${host}`}
+                      href={`tel:+${person.phone}`}
                       className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 font-semibold text-ink tabular-nums transition hover:-translate-y-0.5"
                     >
-                      <Phone size={17} aria-hidden /> {formatPhone(host)}
+                      <Phone size={17} aria-hidden /> {formatPhone(person.phone)}
                     </a>
                   </div>
                 </article>
               </Reveal>
             </li>
-          )}
+          ))}
 
           {usefulContacts.map((c, i) => {
             const Icon = ICONS[c.id] ?? Phone

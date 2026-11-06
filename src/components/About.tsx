@@ -23,7 +23,7 @@ function Collage() {
       >
         <Img
           name={`ab:${AB.fachada}`}
-          alt="Fachada do chalé em A, toda em vidro"
+          alt="Fachada do chalé, toda em vidro"
           sizes="(min-width: 1024px) 40vw, 90vw"
           className="aspect-[4/3] w-full object-cover"
         />
@@ -47,9 +47,9 @@ function Collage() {
         className="absolute -top-5 -right-3 grid h-24 w-24 place-items-center rounded-full bg-terra-600 text-center text-white shadow-lg sm:-right-6"
       >
         <span className="font-script text-xl leading-tight">
-          A-frame
+          Estilo
           <br />
-          <span className="font-sans text-xs tracking-widest uppercase">design</span>
+          <span className="font-sans text-[10px] tracking-widest uppercase">contemporâneo</span>
         </span>
       </motion.div>
     </div>
@@ -63,7 +63,7 @@ export function About() {
         <div className="mb-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
             <SectionHead eyebrow="O chalé" title="Privacidade, conforto e" script="tranquilidade">
-              Cabana A-frame moderna, com deck e fachada em vidro, em bairro tranquilo perto do centro e com
+              Chalé moderno de estilo contemporâneo, com deck e fachada em vidro, em bairro tranquilo perto do centro e com
               vista para o Recinto de Festas. O chalé inteiro é só seu: não há áreas compartilhadas.
             </SectionHead>
             <Reveal delay={0.15}>
