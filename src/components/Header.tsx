@@ -9,6 +9,7 @@ const LINKS = [
   { id: 'galeria', label: 'Galeria' },
   { id: 'manual', label: 'Manual do hóspede' },
   { id: 'arredores', label: 'Arredores' },
+  { id: 'onde-comer', label: 'Onde comer' },
   { id: 'contatos', label: 'Contatos' },
 ] as const
 

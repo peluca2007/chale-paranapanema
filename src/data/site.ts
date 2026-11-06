@@ -360,3 +360,33 @@ export const places: Place[] = [
 
 export const mapsHref = (place: string) =>
   `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${place}, Paranapanema, SP`)}`
+
+/* --------------------------- Onde comer (food service) --------------------------- */
+
+export type FoodPlace = {
+  name: string
+  kind: string
+  phone: string
+  photo: string
+  alt: string
+  address?: string
+  note?: string
+  /** Endereço para o Maps quando for diferente do mostrado. */
+  mapsQuery?: string
+}
+
+/** Contatos gastronômicos (dados públicos dos estabelecimentos, enviados pelo anfitrião). */
+export const food: FoodPlace[] = [
+  { name: 'Netão Sushi Gourmet', kind: 'Restaurante japonês', phone: '(14) 99895-0694', address: 'Rua Capitão Totó Duarte, 315, Centro', photo: 'food-netao.jpg', alt: 'Combinado de sushi com caldas' },
+  { name: 'Lá no Marquinho', kind: 'Bar com petiscos, cerveja gelada e comida japonesa', phone: '(14) 99634-9152', address: 'Rua Avaré, 640, Centro', photo: 'food-marquinho.jpg', alt: 'Fachada do bar Lá no Marquinho à noite' },
+  { name: 'Ice & Pizza', kind: 'Pizzaria e sorveteria', phone: '(14) 99639-9008', address: 'Rua Francisco Alves de Almeida, 195, Centro', photo: 'food-icepizza.jpg', alt: 'Pizza e kit de pizzaria' },
+  { name: 'Bom Pernil & Burger', kind: 'Lanchonete', phone: '(14) 99788-4439', address: 'Praça da Matriz', photo: 'food-bompernil.jpg', alt: 'Fachada iluminada do Bom Pernil & Burger' },
+  { name: 'Edi Dog', kind: 'Lanchonete', phone: '(14) 99664-2406', address: 'Rua Francisco Alves de Almeida, 936, Centro', photo: 'food-edidog.jpg', alt: 'Cachorro-quente prensado recheado' },
+  { name: 'Jacobs Esfiharia', kind: 'Esfiharia delivery', phone: '(14) 99894-2333', note: 'Delivery', photo: 'food-jacobs.jpg', alt: 'Esfiha de carne e esfiha doce de chocolate' },
+  { name: 'Pastelaria da Cesane', kind: 'Pastelaria', phone: '(14) 99671-2040', photo: 'food-pastelaria.jpg', alt: 'Logo da Pastelaria da Cesane' },
+  { name: 'Graal Holandês', kind: 'Posto de combustível e restaurante', phone: '(14) 99759-2735', address: 'Rodovia Raposo Tavares, km 245', note: 'A 11 km do chalé', photo: 'food-graal.jpg', alt: 'Buffet de carnes e linguiças do Graal' },
+]
+
+/** "(14) 99895-0694" -> link do WhatsApp com mensagem pronta. */
+export const foodWhatsapp = (phone: string) =>
+  `https://wa.me/55${phone.replace(/\D/g, '')}?text=${encodeURIComponent('Olá! Estou hospedado no Chalé Paranapanema e gostaria de fazer um pedido.')}`

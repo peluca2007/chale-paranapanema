@@ -4,6 +4,7 @@ import { Contact } from './components/Contact'
 import { Contacts } from './components/Contacts'
 import { Explore } from './components/Explore'
 import { Marquee, MobileBar } from './components/Extras'
+import { Food } from './components/Food'
 import { Footer } from './components/Footer'
 import { Gallery } from './components/Gallery'
 import { Header } from './components/Header'
@@ -30,6 +31,7 @@ export default function App() {
         <Gallery />
         <Guide />
         <Explore />
+        <Food />
         <Contacts />
         <Contact />
       </main>
