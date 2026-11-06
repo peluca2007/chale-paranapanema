@@ -3,12 +3,11 @@ import {
   emergencyNumbers,
   formatPhone,
   mapsHref,
-  photo,
   site,
   telHref,
   usefulContacts,
 } from '../data/site'
-import { Reveal, SectionHead } from './ui'
+import { Img, Reveal, SectionHead } from './ui'
 
 const ICONS: Record<string, LucideIcon> = {
   hospital: Stethoscope,
@@ -89,12 +88,7 @@ export function Contacts() {
                 <Reveal delay={(i % 3) * 0.06} className="h-full">
                   <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                     <div className="relative overflow-hidden">
-                      <img
-                        src={photo(c.photo)}
-                        alt={c.alt}
-                        loading="lazy"
-                        className="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105"
-                      />
+                      <Img name={c.photo} alt={c.alt} className="aspect-[16/10] w-full object-cover group-hover:scale-105" />
                       <span className="absolute bottom-3 left-3 grid h-11 w-11 place-items-center rounded-full bg-white/95 text-terra-700 shadow">
                         <Icon size={20} aria-hidden />
                       </span>

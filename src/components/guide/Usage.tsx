@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { Check, Copy } from 'lucide-react'
-import { photo, site, usageItems, type UsageItem } from '../../data/site'
+import { site, usageItems, type UsageItem } from '../../data/site'
 import { useCopy } from '../../lib/hooks'
-import { Reveal } from '../ui'
+import { Img, Reveal } from '../ui'
 
 function WifiTool() {
   const { copied, copy } = useCopy()
@@ -91,11 +91,11 @@ export function Usage() {
             <Reveal delay={(i % 2) * 0.08} className="h-full">
               <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
                 <div className="overflow-hidden">
-                  <img
-                    src={photo(item.photo)}
+                  <Img
+                    name={item.photo}
                     alt={item.alt}
-                    loading="lazy"
-                    className="aspect-[16/6] w-full object-cover transition duration-500 group-hover:scale-105"
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="aspect-[16/8] w-full object-cover group-hover:scale-105"
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">

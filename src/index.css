@@ -92,7 +92,20 @@
   animation: float 5s ease-in-out infinite;
 }
 
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .marquee,
   .twinkle,
   .drift,
   .firefly {

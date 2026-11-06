@@ -1,5 +1,9 @@
 import {
   Armchair,
+  Bath,
+  BedDouble,
+  Lock,
+  Sparkles,
   BellOff,
   CigaretteOff,
   Car,
@@ -24,8 +28,39 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
-/** Caminho de uma foto em /public/photos, respeitando o `base` do Vite. */
-export const photo = (name: string) => `${import.meta.env.BASE_URL}photos/${name}`
+/* --------------------------------- Fotos --------------------------------- */
+
+/** Fotos originais do anúncio no Airbnb (1200 px), servidas pelo CDN do próprio Airbnb. */
+const AIRBNB_CDN = 'https://a0.muscache.com/im/pictures/hosting/Hosting-1755963782047461849/original/'
+export const AB = {
+  fachada: '5fdbfe82-5e1e-4fb5-8d79-df52c8e2147a',
+  quartoJanela: '6e33c624-9ecd-4add-a22b-573a98dc50e5',
+  cozinha: '19e1d460-0735-46f5-a2d8-768e800fa762',
+  interior: 'fd47ac9e-43e5-4ae0-9937-bb9dd599105a',
+  bancadaBanheiro: '507a5d06-0810-4312-aa2e-7731b42f8e0d',
+  chuveiro: '1ac70112-779b-47a4-9451-6e45f69e7afb',
+  tvTrabalho: '86ddb874-d6f9-4761-a831-cb7cab81d4ad',
+  tv: '1178c317-c745-43ce-89f0-32c4d4b1bfed',
+  bancada: '44315a82-4cf4-4635-918a-4d4709fd756a',
+  cama: '9c4e33a9-be7c-4d98-8156-b09a698fd063',
+  pia: '53f15db3-11fa-483e-b8e2-0e9753f36a3a',
+  lateral: '8911612f-5ede-4837-bbff-67df11c1ebff',
+  banheiro: 'c7faea33-4a39-42ad-a183-c34d8716b569',
+} as const
+const ab = (key: keyof typeof AB) => `ab:${AB[key]}`
+
+/**
+ * Endereço de uma foto. `ab:<id>` = foto do Airbnb; o resto vem de /public/photos
+ * (respeitando o `base` do Vite).
+ */
+export const photo = (name: string, width = 1200) =>
+  name.startsWith('ab:')
+    ? `${AIRBNB_CDN}${name.slice(3)}.jpeg?im_w=${width}`
+    : `${import.meta.env.BASE_URL}photos/${name}`
+
+/** srcset responsivo: o celular baixa uma versão menor e a tela grande, a maior. */
+export const photoSrcSet = (name: string) =>
+  name.startsWith('ab:') ? [480, 720, 1200].map((w) => `${photo(name, w)} ${w}w`).join(', ') : undefined
 
 const env = (key: string): string => String(import.meta.env[key] ?? '').trim()
 
@@ -37,7 +72,7 @@ export const site = {
   city: 'Paranapanema, SP',
 
   /** Dados privados vêm de variáveis de ambiente (veja .env.example): não ficam no repositório. */
-  airbnbUrl: env('VITE_AIRBNB_URL'),
+  airbnbUrl: env('VITE_AIRBNB_URL') || 'https://www.airbnb.com.br/rooms/1755963782047461849',
 
   /** WhatsApp da anfitriã, só números com DDI+DDD (ex.: 5514999999999). */
   whatsapp: env('VITE_WHATSAPP'),
@@ -101,7 +136,10 @@ export const amenities: { icon: LucideIcon; title: string; text: string }[] = [
   { icon: Wind, title: 'Ar-condicionado', text: 'Clima ajustável para dormir bem em qualquer estação.' },
   { icon: Wifi, title: 'Wi-Fi', text: 'Internet no chalé para trabalhar ou maratonar.' },
   { icon: Tv, title: 'TV com streaming', text: 'Netflix e YouTube já instalados.' },
-  { icon: CookingPot, title: 'Cozinha equipada', text: 'Cooktop, micro-ondas, pia e utensílios.' },
+  { icon: BedDouble, title: 'Cama de casal + auxiliar', text: 'Uma cama de casal e uma cama auxiliar de solteiro.' },
+  { icon: CookingPot, title: 'Cozinha compacta', text: 'Cooktop, frigobar, micro-ondas, pia e bancada.' },
+  { icon: Lock, title: 'Cofre', text: 'Para guardar documentos e objetos de valor.' },
+  { icon: Sparkles, title: 'Fachada em vidro', text: 'Cabana A-frame moderna, com deck e muita luz natural.' },
   { icon: ShowerHead, title: 'Banho quente', text: 'Chuveiro com água aquecida.' },
   { icon: Car, title: 'Estacionamento', text: 'Dentro do terreno, em frente aos coqueiros.' },
   { icon: PawPrint, title: 'Pet friendly', text: 'Pets de pequeno porte, mediante aviso prévio.' },
@@ -114,18 +152,35 @@ export const stats = [
   { value: '300 m', label: 'da Praça da Matriz' },
 ]
 
-export const gallery: { file: string; alt: string; caption: string }[] = [
-  { file: 'fachada.jpg', alt: 'Fachada do chalé em A vista do jardim', caption: 'Fachada em A' },
-  { file: 'deck-entardecer.jpg', alt: 'Deck com mesa e cadeiras ao entardecer', caption: 'Deck ao entardecer' },
-  { file: 'interior.jpg', alt: 'Interior do chalé em madeira com cama de casal', caption: 'Interior em madeira' },
-  { file: 'cozinha.jpg', alt: 'Cozinha com bancada escura e pia', caption: 'Cozinha' },
-  { file: 'quarto-amplo.jpg', alt: 'Quarto do chalé com cama de casal e teto inclinado', caption: 'Quarto amplo' },
-  { file: 'cama.jpg', alt: 'Cama arrumada com roupa de cama cinza', caption: 'Roupa de cama' },
-  { file: 'por-do-sol.jpg', alt: 'Chalé ao pôr do sol com casal à mesa no deck', caption: 'Pôr do sol' },
-  { file: 'garagem.jpg', alt: 'Carro estacionado no gramado ao lado do chalé', caption: 'Estacionamento no terreno' },
-  { file: 'quarto-janela.jpg', alt: 'Cama junto à grande janela com vista para o jardim', caption: 'Vista do quarto' },
-  { file: 'luminaria.jpg', alt: 'Luminária trançada acesa', caption: 'Detalhes de luz' },
+export type GalleryItem = { file: string; alt: string; caption: string; tall?: boolean }
+
+export const gallery: GalleryItem[] = [
+  { file: ab('fachada'), alt: 'Fachada do chalé em A, toda em vidro, com a cama aparecendo lá dentro', caption: 'Fachada em vidro' },
+  { file: ab('quartoJanela'), alt: 'Cama de casal diante do janelão triangular com vista para o gramado', caption: 'Acordar com essa vista' },
+  { file: ab('interior'), alt: 'Interior em madeira com teto em A, cama de casal e luminária', caption: 'Tudo em um só ambiente' },
+  { file: ab('chuveiro'), alt: 'Box do chuveiro com revestimento de madeira e janela alta', caption: 'Banheiro', tall: true },
+  { file: ab('tvTrabalho'), alt: 'TV na parede, prateleiras e a área de trabalho ao fundo', caption: 'TV e área de trabalho' },
+  { file: ab('cozinha'), alt: 'Bancada escura com pia, cooktop, cadeira e frigobar', caption: 'Cozinha compacta' },
+  { file: ab('cama'), alt: 'Cama de casal arrumada sob o teto inclinado de madeira', caption: 'Cama de casal' },
+  { file: ab('lateral'), alt: 'Lateral do chalé com telhado metálico escuro descendo até o chão', caption: 'Arquitetura A-frame' },
+  { file: ab('pia'), alt: 'Pia redonda em pedra preta com espelho redondo', caption: 'Detalhes do banheiro', tall: true },
+  { file: ab('bancadaBanheiro'), alt: 'Bancada da cozinha ao lado da porta do banheiro', caption: 'Bancada e banheiro' },
+  { file: ab('tv'), alt: 'TV fixada na parede de madeira, com prateleiras ao lado', caption: 'Smart TV' },
+  { file: ab('bancada'), alt: 'Bancada com pia, cooktop e espaço de apoio', caption: 'Bancada' },
 ]
+
+/** Fotos da vitrine "Por dentro" (rolagem horizontal). */
+export const tour: { file: string; title: string; text: string }[] = [
+  { file: ab('fachada'), title: 'Fachada em vidro', text: 'Cabana A-frame moderna, com deck e luz natural o dia inteiro.' },
+  { file: ab('quartoJanela'), title: 'O janelão', text: 'A cama fica de frente para o vidro: dá para acordar vendo o céu.' },
+  { file: ab('interior'), title: 'Madeira e aconchego', text: 'Um ambiente único, com teto alto em A e iluminação quente.' },
+  { file: ab('tvTrabalho'), title: 'TV e trabalho', text: 'Smart TV com Netflix e YouTube, e uma bancada para o notebook.' },
+  { file: ab('cozinha'), title: 'Cozinha compacta', text: 'Cooktop, frigobar, micro-ondas e pia para as refeições rápidas.' },
+  { file: ab('banheiro'), title: 'Banheiro sofisticado', text: 'Pedra preta, madeira e chuveiro quente.' },
+]
+
+/** Avaliação real do anúncio. */
+export const review = { text: 'Amei a estadia!! Voltaremos mais vezes!', author: 'Paula', source: 'hóspede pelo Airbnb' }
 
 /* ----------------------------- Manual: check-in ---------------------------- */
 
@@ -141,7 +196,7 @@ export const checkInSteps: {
     icon: Clock,
     title: 'Horário de entrada',
     text: `O check-in está disponível a partir das ${site.checkIn}.`,
-    photo: 'fachada.jpg',
+    photo: ab('fachada'),
     alt: 'Fachada do chalé',
   },
   {
@@ -170,7 +225,7 @@ export const checkInSteps: {
     icon: DoorOpen,
     title: 'Entre no chalé',
     text: 'Abra o chalé com a chave do molho. Qualquer dificuldade no acesso, entre em contato imediatamente.',
-    photo: 'quarto-amplo.jpg',
+    photo: ab('interior'),
     alt: 'Interior do chalé',
   },
 ]
@@ -188,11 +243,11 @@ export type UsageItem = {
 
 export const usageItems: UsageItem[] = [
   { id: 'wifi', icon: Wifi, title: 'Wi-Fi', text: 'Conecte-se à rede do chalé.', photo: 'wifi.jpg', alt: 'Quadro com os dados do Wi-Fi sobre a mesa' },
-  { id: 'tv', icon: Tv, title: 'TV', text: 'Use o controle remoto para ligar a TV. Apps disponíveis: Netflix e YouTube. Faça logout ao final da estadia.', photo: 'tv.jpg', alt: 'TV fixada na parede de madeira' },
+  { id: 'tv', icon: Tv, title: 'TV', text: 'Use o controle remoto para ligar a TV. Apps disponíveis: Netflix e YouTube. Faça logout ao final da estadia.', photo: ab('tv'), alt: 'TV fixada na parede de madeira' },
   { id: 'ar', icon: Wind, title: 'Ar-condicionado', text: 'Ligue pelo controle remoto. Temperatura recomendada entre 22° e 24°. Desligue ao sair do quarto.', photo: 'ar.jpg', alt: 'Ar-condicionado instalado no alto da parede' },
-  { id: 'chuveiro', icon: ShowerHead, title: 'Chuveiro', text: 'Ajuste a temperatura antes do banho e aguarde alguns segundos para a água aquecer corretamente.', photo: 'chuveiro.jpg', alt: 'Chuveiro do banheiro' },
-  { id: 'cooktop', icon: CookingPot, title: 'Fogão / Cooktop', text: 'Utilize com cuidado. Verifique se as bocas ficaram desligadas após o uso.', photo: 'cooktop.jpg', alt: 'Cooktop e pia da cozinha' },
-  { id: 'microondas', icon: Microwave, title: 'Micro-ondas', text: 'Disponível para melhor conforto da sua estadia. Use com cuidado e deixe o aparelho limpo após o uso.', photo: 'microondas.jpg', alt: 'Micro-ondas preto na bancada' },
+  { id: 'chuveiro', icon: ShowerHead, title: 'Chuveiro', text: 'Ajuste a temperatura antes do banho e aguarde alguns segundos para a água aquecer corretamente.', photo: ab('chuveiro'), alt: 'Chuveiro do banheiro' },
+  { id: 'cooktop', icon: CookingPot, title: 'Fogão / Cooktop', text: 'Utilize com cuidado. Verifique se as bocas ficaram desligadas após o uso.', photo: ab('cozinha'), alt: 'Bancada com cooktop, pia e frigobar' },
+  { id: 'microondas', icon: Microwave, title: 'Micro-ondas', text: 'Disponível para melhor conforto da sua estadia. Use com cuidado e deixe o aparelho limpo após o uso.', photo: ab('bancada'), alt: 'Micro-ondas preto na bancada' },
 ]
 
 /* ------------------------------ Manual: regras ----------------------------- */
@@ -214,6 +269,7 @@ export const rules: {
   { id: 'silencio', icon: BellOff, chip: 'Horário de silêncio', verdict: site.quietHours, tone: 'info', text: 'Evite som alto e barulhos excessivos nesse período.' },
   { id: 'hospedes', icon: Users, chip: 'Quantas pessoas?', verdict: 'Até 3 hóspedes', tone: 'info', text: 'Até 3 hóspedes no total, contando crianças, conforme informado na reserva.' },
   { id: 'visitantes', icon: DoorOpen, chip: 'Posso receber visitas?', verdict: 'Só com autorização', tone: 'warn', text: 'A entrada de visitantes extras deve ser autorizada previamente pela anfitriã.' },
+  { id: 'toalhas', icon: Bath, chip: 'Tem toalha?', verdict: 'Traga a sua', tone: 'warn', text: 'Não fornecemos toalhas de banho. Por favor, traga a sua.' },
   { id: 'cuidados', icon: Armchair, chip: 'Cuidados com o imóvel', verdict: 'Preserve tudo', tone: 'info', text: 'Preserve móveis, roupas de cama, utensílios, eletrodomésticos e objetos decorativos.' },
 ]
 

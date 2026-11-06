@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowLeft, ArrowRight, Check, MessageCircle } from 'lucide-react'
-import { checkInSteps, formatPhone, keyWhatsappHref, photo, site, whatsappHref } from '../../data/site'
+import { checkInSteps, formatPhone, keyWhatsappHref, site, whatsappHref } from '../../data/site'
+import { Img } from '../ui'
 
 export function CheckIn() {
   const [i, setI] = useState(0)
@@ -66,10 +67,12 @@ export function CheckIn() {
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.25 }}
           >
-            <img
-              src={photo(step.photo)}
+            <Img
+              name={step.photo}
               alt={step.alt}
-              className="aspect-[16/7] w-full object-cover"
+              eager
+              sizes="(min-width: 1024px) 768px, 100vw"
+              className="aspect-[16/9] w-full object-cover sm:aspect-[16/7]"
             />
             <div className="p-6 sm:p-8">
               <p className="mb-2 flex items-center gap-2 text-sm font-semibold tracking-wider text-terra-700 uppercase">

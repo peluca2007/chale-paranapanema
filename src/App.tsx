@@ -3,11 +3,13 @@ import { About } from './components/About'
 import { Contact } from './components/Contact'
 import { Contacts } from './components/Contacts'
 import { Explore } from './components/Explore'
+import { Marquee, MobileBar } from './components/Extras'
 import { Footer } from './components/Footer'
 import { Gallery } from './components/Gallery'
 import { Header } from './components/Header'
 import { Guide } from './components/guide/Guide'
 import { Hero } from './components/hero/Hero'
+import { Tour } from './components/Tour'
 
 export default function App() {
   return (
@@ -22,7 +24,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
+        <Marquee />
         <About />
+        <Tour />
         <Gallery />
         <Guide />
         <Explore />
@@ -30,6 +34,7 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
+      <MobileBar />
     </MotionConfig>
   )
 }

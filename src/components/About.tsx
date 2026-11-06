@@ -1,15 +1,92 @@
-import { Heart } from 'lucide-react'
-import { amenities, stats } from '../data/site'
-import { Reveal, SectionHead } from './ui'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'motion/react'
+import { Heart, Quote, Star } from 'lucide-react'
+import { AB, amenities, review, stats } from '../data/site'
+import { Img, Reveal, SectionHead } from './ui'
+
+function Collage() {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const yBig = useTransform(scrollYProgress, [0, 1], ['6%', '-6%'])
+  const ySmall = useTransform(scrollYProgress, [0, 1], ['30%', '-30%'])
+  const rot = useTransform(scrollYProgress, [0, 1], [5, -3])
+
+  return (
+    <div ref={ref} className="relative mx-auto mb-10 w-full max-w-lg pb-16 lg:mb-0 lg:max-w-none lg:pb-0">
+      <motion.div
+        style={{ y: yBig }}
+        initial={{ clipPath: 'inset(12% 12% 12% 12% round 2rem)', opacity: 0 }}
+        whileInView={{ clipPath: 'inset(0% 0% 0% 0% round 2rem)', opacity: 1 }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+        className="overflow-hidden rounded-[2rem] shadow-2xl shadow-ink/20"
+      >
+        <Img
+          name={`ab:${AB.fachada}`}
+          alt="Fachada do chalé em A, toda em vidro"
+          sizes="(min-width: 1024px) 40vw, 90vw"
+          className="aspect-[4/3] w-full object-cover"
+        />
+      </motion.div>
+      <motion.div
+        style={{ y: ySmall, rotate: rot }}
+        className="absolute -bottom-2 -left-2 w-[48%] overflow-hidden rounded-3xl border-[6px] border-cream-100 shadow-xl sm:-left-8 lg:-bottom-10"
+      >
+        <Img
+          name={`ab:${AB.quartoJanela}`}
+          alt="Cama de casal diante do janelão"
+          sizes="(min-width: 1024px) 20vw, 45vw"
+          className="aspect-square w-full object-cover"
+        />
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0, rotate: -20 }}
+        whileInView={{ scale: 1, rotate: 0 }}
+        viewport={{ once: true }}
+        transition={{ type: 'spring', stiffness: 200, damping: 14, delay: 0.6 }}
+        className="absolute -top-5 -right-3 grid h-24 w-24 place-items-center rounded-full bg-terra-600 text-center text-white shadow-lg sm:-right-6"
+      >
+        <span className="font-script text-xl leading-tight">
+          A-frame
+          <br />
+          <span className="font-sans text-xs tracking-widest uppercase">design</span>
+        </span>
+      </motion.div>
+    </div>
+  )
+}
 
 export function About() {
   return (
-    <section id="chale" className="px-5 py-20">
+    <section id="chale" className="overflow-hidden px-5 py-20">
       <div className="mx-auto max-w-6xl">
-        <SectionHead eyebrow="O chalé" title="Privacidade, conforto e" script="tranquilidade">
-          Este imóvel foi preparado para você e sua família. Aqui você terá acesso ao chalé inteiro de forma
-          exclusiva: não há áreas compartilhadas com outros hóspedes ou com o anfitrião.
-        </SectionHead>
+        <div className="mb-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <SectionHead eyebrow="O chalé" title="Privacidade, conforto e" script="tranquilidade">
+              Cabana A-frame moderna, com deck e fachada em vidro, em bairro tranquilo perto do centro e com
+              vista para o Recinto de Festas. O chalé inteiro é só seu: não há áreas compartilhadas.
+            </SectionHead>
+            <Reveal delay={0.15}>
+              <figure className="flex gap-4 rounded-3xl bg-white/70 p-5 ring-1 ring-ink/5 backdrop-blur">
+                <Quote size={28} className="shrink-0 text-terra-400" aria-hidden />
+                <div>
+                  <div className="mb-1 flex gap-0.5 text-terra-500" aria-label="5 estrelas">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <Star key={i} size={16} fill="currentColor" aria-hidden />
+                    ))}
+                  </div>
+                  <blockquote className="font-display text-xl">“{review.text}”</blockquote>
+                  <figcaption className="mt-1 text-sm text-ink/60">
+                    {review.author}, {review.source}
+                  </figcaption>
+                </div>
+              </figure>
+            </Reveal>
+          </div>
+          <div>
+            <Collage />
+          </div>
+        </div>
 
         <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {amenities.map(({ icon: Icon, title, text }, i) => (

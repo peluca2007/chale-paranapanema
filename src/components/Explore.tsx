@@ -1,8 +1,8 @@
 import { useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ExternalLink, Footprints, Car, Globe, House, MapPin, Phone } from 'lucide-react'
-import { discover, mapsHref, photo, places, site } from '../data/site'
-import { Reveal, SectionHead } from './ui'
+import { discover, mapsHref, places, site } from '../data/site'
+import { Img, Reveal, SectionHead } from './ui'
 
 const SIZE = 420
 const C = SIZE / 2
@@ -152,12 +152,7 @@ export function Explore() {
               <Reveal delay={i * 0.07} className="h-full">
                 <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-ink/5 transition duration-300 hover:-translate-y-1.5 hover:shadow-xl">
                   <div className="overflow-hidden">
-                    <img
-                      src={photo(d.photo)}
-                      alt={d.alt}
-                      loading="lazy"
-                      className="aspect-[5/4] w-full object-cover transition duration-500 group-hover:scale-110"
-                    />
+                    <Img name={d.photo} alt={d.alt} className="aspect-[5/4] w-full object-cover group-hover:scale-110" />
                   </div>
                   <div className="p-5">
                     <h3 className="font-display text-xl leading-snug">{d.title}</h3>

@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react'
-import { gallery, photo } from '../data/site'
-import { SectionHead } from './ui'
+import { gallery, photo, photoSrcSet } from '../data/site'
+import { Img, SectionHead } from './ui'
 
 export function Gallery() {
   const [open, setOpen] = useState<number | null>(null)
@@ -40,12 +40,19 @@ export function Gallery() {
     <section id="galeria" className="bg-cream-200/50 px-5 py-20">
       <div className="mx-auto max-w-6xl">
         <SectionHead eyebrow="Galeria" title="Um olhar por" script="dentro e por fora">
-          Toque em uma foto para ampliar. Use as setas do teclado para passar de uma para outra.
+          Toque em uma foto para ampliar. No celular, arraste para o lado para passar; no computador, use as setas.
         </SectionHead>
 
-        <ul className="columns-2 gap-3 sm:columns-3 sm:gap-4">
+        <ul className="columns-2 gap-3 sm:gap-4 lg:columns-3">
           {gallery.map((g, i) => (
-            <li key={g.file} className="mb-3 break-inside-avoid sm:mb-4">
+            <motion.li
+              key={g.file}
+              className="mb-3 break-inside-avoid sm:mb-4"
+              initial={{ opacity: 0, y: 40, scale: 0.97 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.7, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
               <button
                 type="button"
                 onClick={(e) => {
@@ -55,18 +62,20 @@ export function Gallery() {
                 aria-label={`Ampliar foto: ${g.caption}`}
                 className="group relative block w-full overflow-hidden rounded-2xl bg-cream-200 shadow-sm ring-1 ring-ink/5"
               >
-                <img
-                  src={photo(g.file)}
+                <Img
+                  name={g.file}
                   alt={g.alt}
-                  loading="lazy"
-                  className="block h-auto w-full transition duration-500 group-hover:scale-105"
+                  sizes="(min-width: 1024px) 33vw, 50vw"
+                  className={`block w-full object-cover duration-700 group-hover:scale-105 ${
+                    g.tall ? 'aspect-[3/4]' : 'aspect-[4/3]'
+                  }`}
                 />
                 <span className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 bg-gradient-to-t from-ink/75 to-transparent p-3 pt-10 text-sm font-semibold text-white opacity-0 transition group-hover:opacity-100 group-focus-visible:opacity-100">
                   {g.caption}
                   <Maximize2 size={16} aria-hidden />
                 </span>
               </button>
-            </li>
+            </motion.li>
           ))}
         </ul>
       </div>
@@ -122,10 +131,20 @@ export function Gallery() {
               className="max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <motion.img
                 src={photo(current.file)}
+                srcSet={photoSrcSet(current.file)}
+                sizes="(min-width: 1024px) 896px, 100vw"
                 alt={current.alt}
-                className="max-h-[78vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl"
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.6}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -60 || info.velocity.x < -400) move(1)
+                  else if (info.offset.x > 60 || info.velocity.x > 400) move(-1)
+                }}
+                className="max-h-[78vh] w-auto max-w-full cursor-grab touch-pan-y rounded-2xl object-contain shadow-2xl select-none active:cursor-grabbing"
+                draggable={false}
               />
               <figcaption className="mt-3 text-center text-white/90">
                 <span className="font-display text-lg">{current.caption}</span>
