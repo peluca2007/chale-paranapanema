@@ -108,7 +108,7 @@ export const amenities: { icon: LucideIcon; title: string; text: string }[] = [
 ]
 
 export const stats = [
-  { value: '2 + 1', label: 'hóspedes + criança de até 10 anos' },
+  { value: '3', label: 'hóspedes, contando crianças' },
   { value: site.checkIn, label: 'check-in a partir das' },
   { value: site.checkOut, label: 'check-out até as' },
   { value: '300 m', label: 'da Praça da Matriz' },
@@ -212,12 +212,13 @@ export const rules: {
   { id: 'fumar', icon: CigaretteOff, chip: 'Posso fumar?', verdict: 'Só em áreas externas', tone: 'warn', text: 'Não é permitido fumar dentro do chalé. Utilize apenas áreas externas.' },
   { id: 'festa', icon: PartyPopper, chip: 'Posso fazer festa?', verdict: 'Não', tone: 'no', text: 'Não são permitidas festas, eventos ou confraternizações no imóvel.' },
   { id: 'silencio', icon: BellOff, chip: 'Horário de silêncio', verdict: site.quietHours, tone: 'info', text: 'Evite som alto e barulhos excessivos nesse período.' },
-  { id: 'hospedes', icon: Users, chip: 'Quantas pessoas?', verdict: '2 hóspedes + 1 criança', tone: 'info', text: 'Até 2 hóspedes + 1 criança de até 10 anos, conforme informado na reserva.' },
+  { id: 'hospedes', icon: Users, chip: 'Quantas pessoas?', verdict: 'Até 3 hóspedes', tone: 'info', text: 'Até 3 hóspedes no total, contando crianças, conforme informado na reserva.' },
   { id: 'visitantes', icon: DoorOpen, chip: 'Posso receber visitas?', verdict: 'Só com autorização', tone: 'warn', text: 'A entrada de visitantes extras deve ser autorizada previamente pela anfitriã.' },
   { id: 'cuidados', icon: Armchair, chip: 'Cuidados com o imóvel', verdict: 'Preserve tudo', tone: 'info', text: 'Preserve móveis, roupas de cama, utensílios, eletrodomésticos e objetos decorativos.' },
 ]
 
-export const limits = { adults: 2, children: 1, childMaxAge: 10 }
+/** Até 3 pessoas no total, contando crianças (há uma cama auxiliar). */
+export const limits = { guests: 3 }
 
 /* ----------------------------- Manual: saída ------------------------------- */
 
@@ -245,6 +246,41 @@ export const discover: { title: string; text: string; photo: string; alt: string
   { title: 'Gastronomia', text: 'A cidade oferece pizzarias, restaurantes japoneses, lanches artesanais e sorveterias, com opções para todos os gostos.', photo: 'gastronomia.jpg', alt: 'Rua com bares e restaurantes iluminados à noite' },
   { title: 'Clima, romance e família', text: 'Clima agradável o ano todo e o cenário ideal para momentos a dois ou com a família.', photo: 'igreja.jpg', alt: 'Igreja da cidade com arco-íris ao fundo' },
 ]
+
+/* ----------------------------- Contatos úteis ----------------------------- */
+
+export type UsefulContact = {
+  id: string
+  title: string
+  name: string
+  phone: string
+  photo: string
+  alt: string
+  address?: string
+  note?: string
+}
+
+/** Serviços da cidade (dados públicos, do manual do hóspede). */
+export const usefulContacts: UsefulContact[] = [
+  { id: 'hospital', title: 'Hospital', name: 'Municipal Leonardo Van Melis', phone: '(14) 3713-9131', address: 'Rua Urias Domingues Leite, s/nº', photo: 'hospital.jpg', alt: 'Fachada do Hospital Municipal Leonardo Van Melis' },
+  { id: 'farmacia', title: 'Farmácia', name: 'Top Drogarias', phone: '(14) 99604-1803', address: 'Rua Francisco Alves de Almeida, 535, Centro', photo: 'farmacia.jpg', alt: 'Fachada da Top Drogarias' },
+  { id: 'policia', title: 'Polícia Militar', name: '53º Batalhão PM', phone: '190', address: 'Av. Neopolio Teodoro da Silva, 69', photo: 'policia.jpg', alt: 'Sede da Polícia Militar em Paranapanema' },
+  { id: 'chaveiro', title: 'Chaveiro 24h', name: 'Renato Chaveiro', phone: '(14) 99897-7924', note: 'Atendimento 24h', photo: 'chaveiro.jpg', alt: 'Fechadura com chave' },
+  { id: 'posto', title: 'Posto de combustível', name: 'Auto Posto Triunfo', phone: '(14) 3713-1326', address: 'Rua Manoel Domingues Leite, 156, Centro', photo: 'posto.jpg', alt: 'Auto Posto Triunfo' },
+]
+
+/** Números nacionais de emergência. */
+export const emergencyNumbers = [
+  { number: '190', label: 'Polícia' },
+  { number: '192', label: 'SAMU' },
+  { number: '193', label: 'Bombeiros' },
+]
+
+/** "(14) 3713-9131" -> "tel:+551437139131"; números curtos (190) ficam como estão. */
+export const telHref = (phone: string) => {
+  const digits = phone.replace(/\D/g, '')
+  return digits.length <= 4 ? `tel:${digits}` : `tel:+55${digits}`
+}
 
 export type Place = {
   id: string

@@ -9,6 +9,7 @@ const LINKS = [
   { id: 'galeria', label: 'Galeria' },
   { id: 'manual', label: 'Manual do hóspede' },
   { id: 'arredores', label: 'Arredores' },
+  { id: 'contatos', label: 'Contatos' },
 ] as const
 
 const SECTION_IDS = ['inicio', ...LINKS.map((l) => l.id), 'contato'] as const

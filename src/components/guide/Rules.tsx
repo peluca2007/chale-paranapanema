@@ -63,9 +63,8 @@ function ReservationCheck() {
 
   const problems: string[] = []
   const notes: string[] = []
-  if (adults > limits.adults) problems.push(`O limite é de ${limits.adults} hóspedes.`)
-  if (kids > limits.children) problems.push(`Só cabe ${limits.children} criança extra.`)
-  if (kids > 0) notes.push(`A criança deve ter até ${limits.childMaxAge} anos.`)
+  if (adults + kids > limits.guests)
+    problems.push(`O limite é de ${limits.guests} hóspedes no total, contando crianças.`)
   if (pets > 0) notes.push('Avise a anfitriã antes da chegada. Apenas pets de pequeno porte.')
   const ok = problems.length === 0
 

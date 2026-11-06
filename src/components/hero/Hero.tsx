@@ -26,7 +26,7 @@ const PRESETS = [
 ]
 
 const FACTS = [
-  { icon: Users, text: '2 hóspedes + 1 criança' },
+  { icon: Users, text: 'Até 3 hóspedes' },
   { icon: PawPrint, text: 'Pets pequenos' },
   { icon: Wifi, text: 'Wi-Fi' },
   { icon: Clock, text: `Check-in às ${site.checkIn}` },

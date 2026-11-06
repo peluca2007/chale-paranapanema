@@ -1,6 +1,7 @@
 import { MotionConfig } from 'motion/react'
 import { About } from './components/About'
 import { Contact } from './components/Contact'
+import { Contacts } from './components/Contacts'
 import { Explore } from './components/Explore'
 import { Footer } from './components/Footer'
 import { Gallery } from './components/Gallery'
@@ -25,6 +26,7 @@ export default function App() {
         <Gallery />
         <Guide />
         <Explore />
+        <Contacts />
         <Contact />
       </main>
       <Footer />
