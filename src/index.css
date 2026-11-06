@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display Variable", Georgia, serif;
+  --font-script: "Dancing Script Variable", cursive;
+  --font-sans: "Figtree Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream-50: #fbf8f3;
+  --color-cream-100: #f4efe7;
+  --color-cream-200: #e9e1d3;
+  --color-terra-400: #d08a6f;
+  --color-terra-500: #c4785d;
+  --color-terra-600: #a95f45;
+  --color-terra-700: #8a4a34;
+  --color-sage-100: #e8ebe0;
+  --color-sage-300: #b7bfa7;
+  --color-sage-500: #7c8b6b;
+  --color-sage-700: #4f5c43;
+  --color-ink: #1f2923;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    background-color: var(--color-cream-100);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* números alinhados na linha de base também na fonte serifada (Playfair usa "oldstyle" por padrão) */
+    font-feature-settings: "lnum" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-terra-500);
+    outline-offset: 3px;
+    border-radius: 0.5rem;
+  }
+  ::selection {
+    background: var(--color-terra-400);
+    color: white;
+  }
+  input[type="range"] {
+    accent-color: var(--color-terra-600);
+  }
+}
+
+/* Animações da ilustração do chalé */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes drift {
+  from {
+    transform: translateX(-26px);
+  }
+  to {
+    transform: translateX(26px);
+  }
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(10px, -12px);
+  }
+}
+
+.twinkle {
+  animation: twinkle 3.2s ease-in-out infinite;
+}
+.drift {
+  animation: drift 14s ease-in-out infinite alternate;
+}
+.firefly {
+  animation: float 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .twinkle,
+  .drift,
+  .firefly {
+    animation: none;
+  }
+}
