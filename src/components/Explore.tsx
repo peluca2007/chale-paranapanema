@@ -146,7 +146,7 @@ export function Explore() {
           momentos inesquecíveis.
         </SectionHead>
 
-        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {discover.map((d, i) => (
             <li key={d.title}>
               <Reveal delay={i * 0.07} className="h-full">

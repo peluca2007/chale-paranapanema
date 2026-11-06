@@ -241,7 +241,9 @@ export const checkoutChecklist: {
 /* -------------------------------- Arredores -------------------------------- */
 
 export const discover: { title: string; text: string; photo: string; alt: string }[] = [
-  { title: 'Represa Jurumirim', text: 'A represa encanta pelas belas paisagens. Ideal para passeios de barco, pesca e esportes náuticos.', photo: 'represa.jpg', alt: 'Vista aérea de chalés à beira da represa' },
+  { title: 'Represa Jurumirim', text: 'A represa encanta pelas belas paisagens. Ideal para passeios de barco, pesca e esportes náuticos.', photo: 'represa.jpg', alt: 'Vista aérea da represa com balão amarelo sobre a água' },
+  { title: 'Orla da represa', text: 'Areia, gramado e sombra à beira d’água: lugar de passar o dia, fazer piquenique e acompanhar os eventos da cidade.', photo: 'orla.jpg', alt: 'Vista aérea da orla com praia de areia, carros e tendas no gramado' },
+  { title: 'Píer ao pôr do sol', text: 'Quiosques no gramado e um píer sobre a água: o fim de tarde na represa é um espetáculo à parte.', photo: 'pier.jpg', alt: 'Píer de madeira sobre a represa ao entardecer, com quiosques no gramado' },
   { title: 'Riviera de Santa Cristina V e XIII', text: 'As Rivieras contam com restaurantes, piscinas e diversas opções de lazer para toda a família, às margens da represa.', photo: 'riviera.jpg', alt: 'Riviera de Santa Cristina com piscinas e praia de represa' },
   { title: 'Gastronomia', text: 'A cidade oferece pizzarias, restaurantes japoneses, lanches artesanais e sorveterias, com opções para todos os gostos.', photo: 'gastronomia.jpg', alt: 'Rua com bares e restaurantes iluminados à noite' },
   { title: 'Clima, romance e família', text: 'Clima agradável o ano todo e o cenário ideal para momentos a dois ou com a família.', photo: 'igreja.jpg', alt: 'Igreja da cidade com arco-íris ao fundo' },
