@@ -363,7 +363,6 @@ export const places: Place[] = [
 export const moreToDo: { icon: string; title: string; text: string; tag?: string; maps?: string }[] = [
   { icon: 'sun', title: 'Ilha do Sol', tag: '6 km', text: 'Praia de água doce com acesso livre, rampa para barcos, área de pesca, banheiros, campo de futebol e um pôr do sol de cinema.', maps: 'Ilha do Sol' },
   { icon: 'waves', title: 'Praias de água doce', text: 'Praia dos Holandeses, Praia Branca e Enseada Azul: areia, sombra e água calma à beira da Jurumirim.', maps: 'Praia Branca' },
-  { icon: 'fish', title: 'Vila dos Pescadores', text: 'No Bairro da Ponte, às margens do rio Paranapanema: um dos melhores pontos da região para fisgar tucunaré.', maps: 'Vila dos Pescadores, Bairro da Ponte' },
   { icon: 'sailboat', title: 'Esportes na represa', text: 'Jet-ski, windsurf e passeios de barco no "mar de água doce" que banha dez cidades.', maps: 'Represa Jurumirim' },
   { icon: 'party', title: 'Recinto de Festas', tag: '100 m', text: 'Vizinho do chalé. A cidade tem festa o ano inteiro: aniversário da cidade, festas juninas e a festa da Padroeira.', maps: 'Recinto de Festas' },
   { icon: 'church', title: 'Praça da Matriz', tag: '300 m', text: 'O coração da cidade, com a igreja da padroeira Nossa Senhora do Bom Sucesso, lanchonetes e o Império Center.', maps: 'Praça da Matriz' },
