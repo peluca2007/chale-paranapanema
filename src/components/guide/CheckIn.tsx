@@ -126,7 +126,7 @@ export function CheckIn() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-sage-700 px-5 py-2.5 font-semibold text-white transition hover:bg-sage-500"
               >
-                <MessageCircle size={18} aria-hidden /> Falar com a anfitriã
+                <MessageCircle size={18} aria-hidden /> Falar com o anfitrião
               </a>
             ) : (
               <span className="text-sm font-semibold text-sage-700">Estamos felizes em receber vocês!</span>

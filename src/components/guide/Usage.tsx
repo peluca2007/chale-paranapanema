@@ -41,7 +41,7 @@ function WifiTool() {
           </>
         ) : (
           <span className="text-ink/70">
-            <span className="text-ink/60">Senha: </span>informada pela anfitriã na chegada.
+            <span className="text-ink/60">Senha: </span>informada pelo anfitrião na chegada.
           </span>
         )}
       </div>

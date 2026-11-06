@@ -74,7 +74,7 @@ export const site = {
   /** Dados privados vêm de variáveis de ambiente (veja .env.example): não ficam no repositório. */
   airbnbUrl: env('VITE_AIRBNB_URL') || 'https://www.airbnb.com.br/rooms/1755963782047461849',
 
-  /** WhatsApp da anfitriã, só números com DDI+DDD (ex.: 5514999999999). */
+  /** WhatsApp do anfitrião (reservas e dúvidas), só números com DDI+DDD (ex.: 5514999999999). */
   whatsapp: env('VITE_WHATSAPP'),
   whatsappMessage: 'Olá! Vi o site do Chalé Paranapanema e gostaria de saber mais.',
 
@@ -268,7 +268,7 @@ export const rules: {
   { id: 'festa', icon: PartyPopper, chip: 'Posso fazer festa?', verdict: 'Não', tone: 'no', text: 'Não são permitidas festas, eventos ou confraternizações no imóvel.' },
   { id: 'silencio', icon: BellOff, chip: 'Horário de silêncio', verdict: site.quietHours, tone: 'info', text: 'Evite som alto e barulhos excessivos nesse período.' },
   { id: 'hospedes', icon: Users, chip: 'Quantas pessoas?', verdict: 'Até 3 hóspedes', tone: 'info', text: 'Até 3 hóspedes no total, contando crianças, conforme informado na reserva.' },
-  { id: 'visitantes', icon: DoorOpen, chip: 'Posso receber visitas?', verdict: 'Só com autorização', tone: 'warn', text: 'A entrada de visitantes extras deve ser autorizada previamente pela anfitriã.' },
+  { id: 'visitantes', icon: DoorOpen, chip: 'Posso receber visitas?', verdict: 'Só com autorização', tone: 'warn', text: 'A entrada de visitantes extras deve ser autorizada previamente pelo anfitrião.' },
   { id: 'toalhas', icon: Bath, chip: 'Tem toalha?', verdict: 'Traga a sua', tone: 'warn', text: 'Não fornecemos toalhas de banho. Por favor, traga a sua.' },
   { id: 'cuidados', icon: Armchair, chip: 'Cuidados com o imóvel', verdict: 'Preserve tudo', tone: 'info', text: 'Preserve móveis, roupas de cama, utensílios, eletrodomésticos e objetos decorativos.' },
 ]
@@ -291,7 +291,7 @@ export const checkoutChecklist: {
   { id: 'lixo', icon: Trash2, label: 'Retirar o lixo', hint: 'Leve os sacos até a lixeira externa, ao lado do portão de entrada.' },
   { id: 'louca', icon: Utensils, label: 'Deixar a louça organizada', hint: 'Deixe a louça lavada e organizada na cozinha.' },
   { id: 'chaves', icon: KeyRound, label: 'Trancar e devolver as chaves', hint: 'Tranque a porta do chalé e devolva as chaves no mesmo local onde foram retiradas.' },
-  { id: 'avisar', icon: ShieldCheck, label: 'Avisar a anfitriã ao sair', hint: `O check-out é até as ${site.checkOut}.` },
+  { id: 'avisar', icon: ShieldCheck, label: 'Avisar o anfitrião ao sair', hint: `O check-out é até as ${site.checkOut}.` },
 ]
 
 /* -------------------------------- Arredores -------------------------------- */

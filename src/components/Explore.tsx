@@ -245,7 +245,7 @@ export function Explore() {
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           <Reveal>
             <aside className="relative h-full rotate-[-1deg] rounded-3xl bg-white p-7 shadow-lg ring-1 ring-ink/5">
-              <p className="font-script text-3xl text-terra-600">Dica da anfitriã</p>
+              <p className="font-script text-3xl text-terra-600">Dica do anfitrião</p>
               <p className="mt-2 text-lg leading-relaxed text-ink/80">
                 Reserve um tempinho para caminhar sem pressa pela cidade, respirar o ar puro e se encantar com
                 cada detalhe!

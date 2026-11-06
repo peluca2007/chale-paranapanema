@@ -128,7 +128,7 @@ export function About() {
                 incríveis. Qualquer dúvida durante a estadia, estarei à disposição pelo WhatsApp.
               </blockquote>
               <figcaption className="mt-3 text-sm font-semibold tracking-wide text-terra-700 uppercase">
-                Mensagem da anfitriã
+                Mensagem do anfitrião
               </figcaption>
             </figure>
           </Reveal>
