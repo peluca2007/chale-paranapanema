@@ -353,9 +353,20 @@ export const places: Place[] = [
   { id: 'recinto', name: 'Recinto de Festa', km: 0.1, label: '100 m', angle: 205, blurb: 'Pertinho do chalé, para quem gosta de acompanhar os eventos da cidade.' },
   { id: 'praca', name: 'Praça da Matriz', km: 0.3, label: '300 m', angle: 275, blurb: 'O centro da cidade, a uma caminhada curta do chalé.' },
   { id: 'riviera5', name: 'Riviera de Santa Cristina V', km: 5, label: '5 km', angle: 335, blurb: 'Restaurantes, piscinas e lazer para toda a família, às margens da represa.' },
-  { id: 'ilha', name: 'Ilha do Sol', km: 6, label: '6 km', angle: 55, blurb: 'Um dos passeios imperdíveis da região.' },
+  { id: 'ilha', name: 'Ilha do Sol', km: 6, label: '6 km', angle: 55, blurb: 'Praia de água doce com acesso livre, rampa para barcos, área de pesca e um pôr do sol espetacular.' },
+  { id: 'graal', name: 'Graal Holandês', km: 11, label: '11 km', angle: 250, blurb: 'Parada com restaurante e posto na Rodovia Raposo Tavares, km 245.' },
   { id: 'holambra', name: 'Campos de Holambra', km: 20, label: '20 km', angle: 115, blurb: 'Um passeio de meio de tarde para quem quer conhecer a região.' },
   { id: 'riviera13', name: 'Riviera de Santa Cristina XIII', km: 30, label: '30 km', angle: 160, blurb: 'Outra Riviera às margens da represa, com restaurantes e lazer para a família.' },
+]
+
+/** Mais passeios (cartões com ícone, sem foto). */
+export const moreToDo: { icon: string; title: string; text: string; tag?: string; maps?: string }[] = [
+  { icon: 'sun', title: 'Ilha do Sol', tag: '6 km', text: 'Praia de água doce com acesso livre, rampa para barcos, área de pesca, banheiros, campo de futebol e um pôr do sol de cinema.', maps: 'Ilha do Sol' },
+  { icon: 'waves', title: 'Praias de água doce', text: 'Praia dos Holandeses, Praia Branca e Enseada Azul: areia, sombra e água calma à beira da Jurumirim.', maps: 'Praia Branca' },
+  { icon: 'fish', title: 'Vila dos Pescadores', text: 'No Bairro da Ponte, às margens do rio Paranapanema: um dos melhores pontos da região para fisgar tucunaré.', maps: 'Vila dos Pescadores, Bairro da Ponte' },
+  { icon: 'sailboat', title: 'Esportes na represa', text: 'Jet-ski, windsurf e passeios de barco no "mar de água doce" que banha dez cidades.', maps: 'Represa Jurumirim' },
+  { icon: 'party', title: 'Recinto de Festas', tag: '100 m', text: 'Vizinho do chalé. A cidade tem festa o ano inteiro: aniversário da cidade, festas juninas e a festa da Padroeira.', maps: 'Recinto de Festas' },
+  { icon: 'church', title: 'Praça da Matriz', tag: '300 m', text: 'O coração da cidade, com a igreja da padroeira Nossa Senhora do Bom Sucesso, lanchonetes e o Império Center.', maps: 'Praça da Matriz' },
 ]
 
 export const mapsHref = (place: string) =>
@@ -379,7 +390,7 @@ export type FoodPlace = {
 export const food: FoodPlace[] = [
   { name: 'Netão Sushi Gourmet', kind: 'Restaurante japonês', phone: '(14) 99895-0694', address: 'Rua Capitão Totó Duarte, 315, Centro', photo: 'food-netao.jpg', alt: 'Combinado de sushi com caldas' },
   { name: 'Lá no Marquinho', kind: 'Bar com petiscos, cerveja gelada e comida japonesa', phone: '(14) 99634-9152', address: 'Rua Avaré, 640, Centro', photo: 'food-marquinho.jpg', alt: 'Fachada do bar Lá no Marquinho à noite' },
-  { name: 'Ice & Pizza', kind: 'Pizzaria e sorveteria', phone: '(14) 99639-9008', address: 'Rua Francisco Alves de Almeida, 195, Centro', photo: 'food-icepizza.jpg', alt: 'Pizza e kit de pizzaria' },
+  { name: 'Ice & Pizza', kind: 'Pizzaria e sorveteria', phone: '(14) 99772-5630', address: 'Rua Francisco Alves de Almeida, 195, Centro', photo: 'food-icepizza.jpg', alt: 'Pizza e kit de pizzaria' },
   { name: 'Bom Pernil & Burger', kind: 'Lanchonete', phone: '(14) 99788-4439', address: 'Praça da Matriz', photo: 'food-bompernil.jpg', alt: 'Fachada iluminada do Bom Pernil & Burger' },
   { name: 'Edi Dog', kind: 'Lanchonete', phone: '(14) 99664-2406', address: 'Rua Francisco Alves de Almeida, 936, Centro', photo: 'food-edidog.jpg', alt: 'Cachorro-quente prensado recheado' },
   { name: 'Restaurante Cantinho da Gê', kind: 'Prato feito e marmitex', phone: '(14) 99639-9008', address: 'Rua Capitão Totó Duarte, 225, Centro', photo: 'food-cantinho.jpg', alt: 'Prato feito com bife, arroz, feijão, salada e fritas' },

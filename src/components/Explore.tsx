@@ -1,8 +1,69 @@
 import { useState, type KeyboardEvent } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
-import { ExternalLink, Footprints, Car, Globe, House, MapPin, Phone } from 'lucide-react'
-import { discover, mapsHref, places, site } from '../data/site'
+import { ArrowUpRight, Church, ExternalLink, Fish, Footprints, Car, Globe, House, MapPin, PartyPopper, Phone, Sailboat, Sun, Waves, type LucideIcon } from 'lucide-react'
+import { discover, mapsHref, moreToDo, places, site } from '../data/site'
 import { Img, Reveal, SectionHead } from './ui'
+
+const MORE_ICONS: Record<string, LucideIcon> = {
+  sun: Sun,
+  waves: Waves,
+  fish: Fish,
+  sailboat: Sailboat,
+  party: PartyPopper,
+  church: Church,
+}
+
+function MoreToDo() {
+  return (
+    <div className="mt-12">
+      <h4 className="mb-5 font-display text-2xl">
+        Mais para <span className="font-script text-3xl text-terra-600">conhecer</span>
+      </h4>
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {moreToDo.map((m, i) => {
+          const Icon = MORE_ICONS[m.icon] ?? MapPin
+          return (
+            <motion.li
+              key={m.title}
+              initial={{ opacity: 0, y: 24, rotate: i % 2 ? 1.5 : -1.5 }}
+              whileInView={{ opacity: 1, y: 0, rotate: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.6, delay: (i % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <a
+                href={mapsHref(m.maps ?? m.title)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-white p-5 shadow-sm ring-1 ring-ink/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl"
+              >
+                <span
+                  aria-hidden
+                  className="absolute -top-10 -right-10 h-32 w-32 rounded-full bg-terra-400/10 transition duration-500 group-hover:scale-150"
+                />
+                <div className="relative mb-3 flex items-center justify-between">
+                  <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sage-100 text-sage-700 transition duration-300 group-hover:rotate-[-8deg] group-hover:bg-terra-600 group-hover:text-white">
+                    <Icon size={22} aria-hidden />
+                  </span>
+                  {m.tag && (
+                    <span className="rounded-full bg-cream-100 px-3 py-1 font-display text-sm text-sage-700 tabular-nums">
+                      {m.tag}
+                    </span>
+                  )}
+                </div>
+                <h5 className="relative font-display text-xl">{m.title}</h5>
+                <p className="relative mt-1.5 flex-1 leading-relaxed text-ink/70">{m.text}</p>
+                <span className="relative mt-4 inline-flex items-center gap-1 text-sm font-semibold text-terra-700">
+                  Ver no mapa
+                  <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
+                </span>
+              </a>
+            </motion.li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
 
 const SIZE = 420
 const C = SIZE / 2
@@ -239,6 +300,7 @@ export function Explore() {
                 </div>
               </div>
             </div>
+            <MoreToDo />
           </div>
         </Reveal>
 
