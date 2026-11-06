@@ -50,11 +50,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      # destrava uma publicação anterior que ficou presa em "em andamento"
-      - name: Cancelar publicação travada
-        continue-on-error: true
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh api -X POST repos/${{ github.repository }}/pages/deployments/2786563e02e9b3d08bca6bc4c68af903cceacc37/cancel
       - id: deployment
         uses: actions/deploy-pages@v4
