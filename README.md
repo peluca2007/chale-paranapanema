@@ -1,21 +1,21 @@
 # Chalé Paranapanema
 
-Site interativo de um chalé de hospedagem em Paranapanema (SP). Além de apresentar o chalé, ele transforma o manual do hóspede (que era um PDF/imagens) em uma experiência navegável: check-in passo a passo, regras com perguntas e respostas, checklist de saída e um guia da cidade.
+Site que desenvolvi para o chalé de hospedagem do meu pai, em Paranapanema (SP). Além de apresentar o chalé, ele transforma o manual do hóspede, que antes era um conjunto de imagens e PDFs, em uma experiência navegável: check-in passo a passo, regras com perguntas e respostas, checklist de saída e um guia da cidade.
 
 ![Chalé de dia](docs/preview-dia.png)
 ![Chalé à noite](docs/preview-noite.png)
 
-## O que tem de interessante
+## Destaques
 
-- **Chalé ilustrado em SVG com ciclo do dia.** Um slider (ou o botão play) muda a hora: o céu, o sol, a lua, as estrelas, as luzinhas e a luz do chalé são calculados por interpolação de keyframes (`src/lib/color.ts`). Ao abrir, ele começa na hora real do visitante e tem parallax com o ponteiro do mouse.
+- **Chalé ilustrado em SVG com ciclo do dia.** Um slider (ou o botão play) muda a hora: o céu, o sol, a lua, as estrelas, as luzinhas e a luz do chalé são calculados por interpolação de keyframes (`src/lib/color.ts`). Ao abrir, ele começa na hora real do visitante e tem parallax com o mouse.
 - **Manual do hóspede interativo**, em abas acessíveis (navegação por setas do teclado):
   - *Check-in*: passo a passo com barra de progresso.
-  - *Usando o chalé*: cards com ferramentas (copiar nome do Wi-Fi, testar o termostato).
-  - *Regras*: "Posso levar pet? Posso fumar?" e um verificador que diz se o seu grupo cabe nas regras.
+  - *Usando o chalé*: cards com ferramentas (copiar o nome do Wi-Fi, testar o termostato).
+  - *Regras*: "Posso levar pet? Posso fumar?" e um verificador que diz se o grupo cabe nas regras.
   - *Antes de sair*: checklist com anel de progresso, salvo no `localStorage`.
 - **Radar de distâncias** em escala logarítmica (100 m e 30 km no mesmo desenho), com link para o Google Maps de cada lugar.
-- **Galeria com lightbox** (teclado, foco gerenciado, setas e `Esc`).
-- **Acessibilidade e performance:** HTML semântico, `aria-*`, foco visível, link "pular para o conteúdo", respeita `prefers-reduced-motion`, fontes self-hosted (sem Google Fonts), imagens com `loading="lazy"`.
+- **Galeria com lightbox**, com teclado, foco gerenciado, setas e `Esc`.
+- **Acessibilidade e performance:** HTML semântico, `aria-*`, foco visível, link "pular para o conteúdo", respeita `prefers-reduced-motion`, fontes self-hosted e imagens com `loading="lazy"`.
 - **SEO:** metatags, Open Graph e dados estruturados (`schema.org/LodgingBusiness`).
 
 ## Stack
@@ -24,11 +24,11 @@ Site interativo de um chalé de hospedagem em Paranapanema (SP). Além de aprese
 | --- | --- |
 | Build | Vite |
 | UI | React 19 + TypeScript (strict) |
-| Estilo | Tailwind CSS v4 (tokens em `src/index.css`) |
-| Animação | Motion (`motion/react`) |
+| Estilo | Tailwind CSS v4 |
+| Animação | Motion |
 | Ícones | lucide-react |
 | Fontes | Fontsource (Playfair Display, Dancing Script, Figtree) |
-| Deploy | GitHub Actions + GitHub Pages |
+| Deploy | GitHub Actions + GitHub Pages (demo) e Vercel (site real) |
 
 ## Rodando localmente
 
@@ -41,43 +41,18 @@ npm run build      # confere os tipos e gera a pasta dist/
 npm run preview    # serve o build para testar
 ```
 
-## Personalizando
+## Dados privados
 
-Quase tudo que muda de um chalé para outro está em **`src/data/site.ts`**:
+Link do Airbnb, WhatsApp e senha do Wi-Fi não ficam no código: entram por variáveis de ambiente na hora do build (veja `.env.example`). Sem elas, o site funciona normalmente em modo de demonstração (sem esses botões e com "senha informada na chegada").
 
-| Campo | Para que serve |
-| --- | --- |
-| `airbnbUrl` | Link do anúncio. Liga os botões "Reservar". |
-| `whatsapp` | Número com DDI+DDD (`5514999999999`). Liga o botão de WhatsApp. |
-| `wifi.password` | Deixe vazio para mostrar "informada na chegada". |
-| `author.github` | Link do seu GitHub no rodapé. |
-| `amenities`, `rules`, `checkInSteps`, `places`... | Textos e dados de cada seção. |
+Para testar com os dados reais, copie `.env.example` para `.env.local` (ignorado pelo Git) e preencha.
 
-> Este repositório é público. Não coloque senhas, códigos de fechadura ou telefones pessoais em `site.ts` se não quiser que qualquer pessoa os veja.
+## Deploy
 
-### Fotos
+- **GitHub Pages (demo):** o workflow em `.github/workflows/deploy.yml` publica a cada push na `main`. Ative em Settings, Pages, Source: GitHub Actions.
+- **Vercel (site real):** importe o repositório, cadastre as variáveis do `.env.example` em Settings, Environment Variables, e faça o deploy. O preset Vite é detectado sozinho.
 
-As fotos ficam em `public/photos/` e são listadas em `src/data/site.ts`. As que vêm no projeto foram recortadas de um manual em baixa resolução, então **troque por fotos originais** mantendo o mesmo nome de arquivo (ou ajuste o nome na lista). Fotos de 1600 px de largura em `.jpg` ou `.webp` já ficam ótimas.
-
-## Publicando no GitHub Pages
-
-1. Crie o repositório e envie o código (veja os comandos abaixo).
-2. No GitHub: **Settings, Pages, Build and deployment, Source: GitHub Actions**.
-3. A cada `git push` na branch `main`, o workflow de `.github/workflows/deploy.yml` compila e publica.
-4. O site fica em `https://SEU-USUARIO.github.io/NOME-DO-REPO/`.
-
-```bash
-git init -b main
-git add .
-git commit -m "Primeira versão do site do chalé"
-gh repo create chale-paranapanema --public --source=. --push
-```
-
-O `vite.config.ts` usa `base: './'`, então o mesmo build funciona no GitHub Pages, em domínio próprio, na Vercel, Netlify ou Cloudflare Pages.
-
-### Domínio próprio
-
-Registre o domínio (por exemplo no Registro.br), crie o arquivo `public/CNAME` com o domínio dentro (`www.seuchale.com.br`) e configure o DNS conforme a [documentação do GitHub Pages](https://docs.github.com/pages/configuring-a-custom-domain-for-your-github-pages-site).
+O `vite.config.ts` usa `base: './'`, então o mesmo build funciona em qualquer hospedagem estática.
 
 ## Estrutura
 

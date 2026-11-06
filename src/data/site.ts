@@ -27,25 +27,30 @@ import {
 /** Caminho de uma foto em /public/photos, respeitando o `base` do Vite. */
 export const photo = (name: string) => `${import.meta.env.BASE_URL}photos/${name}`
 
+const env = (key: string): string => String(import.meta.env[key] ?? '').trim()
+
 /* -------------------------------------------------------------------------- */
-/*  CONFIGURAÇÃO — edite aqui antes de publicar                               */
+/*  CONFIGURAÇÃO                                                              */
 /* -------------------------------------------------------------------------- */
 export const site = {
   name: 'Chalé Paranapanema',
   city: 'Paranapanema, SP',
 
-  /** Cole o link do anúncio no Airbnb. Vazio = o botão leva à seção de contato. */
-  airbnbUrl: '',
+  /** Dados privados vêm de variáveis de ambiente (veja .env.example): não ficam no repositório. */
+  airbnbUrl: env('VITE_AIRBNB_URL'),
 
-  /** WhatsApp da anfitriã: só números com DDI+DDD (ex.: '5514999999999'). Vazio = botão oculto. */
-  whatsapp: '',
+  /** WhatsApp da anfitriã, só números com DDI+DDD (ex.: 5514999999999). */
+  whatsapp: env('VITE_WHATSAPP'),
   whatsappMessage: 'Olá! Vi o site do Chalé Paranapanema e gostaria de saber mais.',
 
-  /** Wi-Fi. Deixe a senha vazia para o site mostrar "informada na chegada". */
-  wifi: { network: 'Chalé 5G', password: '' },
+  /** Quem entrega a chave no check-in (Magali). Só números com DDI+DDD. */
+  keyContact: { name: 'Magali', whatsapp: env('VITE_KEY_WHATSAPP') },
 
-  /** Rodapé do portfólio. Preencha o github para exibir o link. */
-  author: { name: 'Peluca', github: '' },
+  /** Sem senha configurada, o site mostra "informada na chegada". */
+  wifi: { network: env('VITE_WIFI_NETWORK') || 'Chalé 5G', password: env('VITE_WIFI_PASSWORD') },
+
+  /** Crédito no rodapé. */
+  author: { name: 'Peluca', github: env('VITE_GITHUB_URL') },
 
   /** Informações turísticas oficiais da cidade (do manual). */
   tourism: {
@@ -61,11 +66,31 @@ export const site = {
   quietHours: '22h às 8h',
 } as const
 
-export const bookingHref = () => site.airbnbUrl || '#contato'
 export const whatsappHref = () =>
   site.whatsapp
     ? `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(site.whatsappMessage)}`
     : ''
+
+export const keyWhatsappHref = () =>
+  site.keyContact.whatsapp
+    ? `https://wa.me/${site.keyContact.whatsapp}?text=${encodeURIComponent(
+        `Olá, ${site.keyContact.name}! Sou hóspede do Chalé Paranapanema e vou retirar a chave.`,
+      )}`
+    : ''
+
+/** 5511999990000 -> (11) 99999-0000 */
+export const formatPhone = (digits: string) => {
+  const m = digits.replace(/^55/, '').match(/^(\d{2})(\d{4,5})(\d{4})$/)
+  return m ? `(${m[1]}) ${m[2]}-${m[3]}` : digits
+}
+
+/** Botão principal de reserva: Airbnb, senão WhatsApp, senão a seção de contato. */
+export function booking() {
+  if (site.airbnbUrl) return { href: site.airbnbUrl, label: 'Reservar no Airbnb', external: true }
+  const wa = whatsappHref()
+  if (wa) return { href: wa, label: 'Reservar pelo WhatsApp', external: true }
+  return { href: '#contato', label: 'Como reservar', external: false }
+}
 
 /* -------------------------------------------------------------------------- */
 /*  CONTEÚDO                                                                  */
@@ -110,6 +135,7 @@ export const checkInSteps: {
   text: string
   photo: string
   alt: string
+  contact?: 'key'
 }[] = [
   {
     icon: Clock,
@@ -124,6 +150,7 @@ export const checkInSteps: {
     text: 'As chaves devem ser retiradas na residência ao lado do portão de entrada. Ao chegar, basta ir até a casa para receber as chaves e as orientações.',
     photo: 'entrada-casa.jpg',
     alt: 'Residência ao lado do portão de entrada',
+    contact: 'key',
   },
   {
     icon: LockKeyhole,

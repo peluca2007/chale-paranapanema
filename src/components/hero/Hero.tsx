@@ -14,7 +14,7 @@ import {
   Users,
   Wifi,
 } from 'lucide-react'
-import { bookingHref, site } from '../../data/site'
+import { booking, site } from '../../data/site'
 import { btnGhost, btnPrimary } from '../ui'
 import { Scene, formatHour, phaseLabel } from './Scene'
 
@@ -41,6 +41,7 @@ export function Hero() {
   const [playing, setPlaying] = useState(false)
   const tween = useRef<ReturnType<typeof animate> | null>(null)
   const reduce = useReducedMotion()
+  const cta = booking()
 
   const pointer = useMotionValue(0)
   const smoothPointer = useSpring(pointer, { stiffness: 80, damping: 20 })
@@ -117,11 +118,11 @@ export function Hero() {
             className="mt-8 flex flex-wrap gap-3"
           >
             <a
-              href={bookingHref()}
-              {...(site.airbnbUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              href={cta.href}
+              {...(cta.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className={btnPrimary}
             >
-              {site.airbnbUrl ? 'Reservar no Airbnb' : 'Como reservar'}
+              {cta.label}
               <ArrowUpRight size={18} aria-hidden />
             </a>
             <a href="#manual" className={btnGhost}>

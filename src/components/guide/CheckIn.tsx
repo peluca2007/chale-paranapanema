@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { ArrowLeft, ArrowRight, Check, MessageCircle } from 'lucide-react'
-import { checkInSteps, photo, whatsappHref } from '../../data/site'
+import { checkInSteps, formatPhone, keyWhatsappHref, photo, site, whatsappHref } from '../../data/site'
 
 export function CheckIn() {
   const [i, setI] = useState(0)
   const step = checkInSteps[i]
   const Icon = step.icon
   const wa = whatsappHref()
+  const keyWa = keyWhatsappHref()
 
   return (
     <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
@@ -77,6 +78,30 @@ export function CheckIn() {
               </p>
               <h3 className="font-display text-3xl">{step.title}</h3>
               <p className="mt-3 text-lg leading-relaxed text-ink/75">{step.text}</p>
+              {step.contact === 'key' && keyWa && (
+                <div className="mt-5 flex flex-wrap items-center gap-3 rounded-2xl bg-cream-100 p-4">
+                  <div className="mr-auto">
+                    <p className="text-sm text-ink/60">Quem entrega a chave</p>
+                    <p className="font-display text-xl">
+                      {site.keyContact.name}{' '}
+                      <a
+                        href={`tel:+55${site.keyContact.whatsapp.replace(/^55/, '')}`}
+                        className="font-sans text-base font-semibold text-terra-700 underline-offset-4 hover:underline"
+                      >
+                        {formatPhone(site.keyContact.whatsapp)}
+                      </a>
+                    </p>
+                  </div>
+                  <a
+                    href={keyWa}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-sage-700 px-5 py-2.5 font-semibold text-white transition hover:bg-sage-500"
+                  >
+                    <MessageCircle size={18} aria-hidden /> Chamar no WhatsApp
+                  </a>
+                </div>
+              )}
             </div>
           </motion.div>
         </AnimatePresence>

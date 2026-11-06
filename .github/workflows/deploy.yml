@@ -27,7 +27,16 @@ jobs:
           cache: npm
 
       - run: npm ci
+      # Dados privados são opcionais: cadastre em Settings > Secrets and variables > Actions > Variables.
+      # Sem eles, o GitHub Pages publica a versão de demonstração (sem WhatsApp, Airbnb ou senha).
       - run: npm run build
+        env:
+          VITE_AIRBNB_URL: ${{ vars.VITE_AIRBNB_URL }}
+          VITE_WHATSAPP: ${{ vars.VITE_WHATSAPP }}
+          VITE_KEY_WHATSAPP: ${{ vars.VITE_KEY_WHATSAPP }}
+          VITE_WIFI_NETWORK: ${{ vars.VITE_WIFI_NETWORK }}
+          VITE_WIFI_PASSWORD: ${{ vars.VITE_WIFI_PASSWORD }}
+          VITE_GITHUB_URL: ${{ vars.VITE_GITHUB_URL }}
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

@@ -46,7 +46,7 @@ export function Contact() {
               )}
               {!hasAny && (
                 <p className="rounded-2xl bg-white/15 px-5 py-3 font-semibold">
-                  O link de reservas será divulgado em breve.
+                  Em breve, mais informações sobre reservas.
                 </p>
               )}
             </div>

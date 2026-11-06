@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AnimatePresence, motion, useMotionValueEvent, useScroll, useSpring } from 'motion/react'
 import { Menu, X } from 'lucide-react'
-import { bookingHref, site } from '../data/site'
+import { booking, site } from '../data/site'
 import { useActiveSection } from '../lib/hooks'
 
 const LINKS = [
@@ -15,6 +15,7 @@ const SECTION_IDS = ['inicio', ...LINKS.map((l) => l.id), 'contato'] as const
 
 export function Header() {
   const active = useActiveSection(SECTION_IDS)
+  const cta = booking()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const { scrollY, scrollYProgress } = useScroll()
@@ -58,8 +59,8 @@ export function Header() {
               </a>
             ))}
             <a
-              href={bookingHref()}
-              {...(site.airbnbUrl ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+              href={cta.href}
+              {...(cta.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
               className="ml-2 rounded-full bg-terra-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-terra-700"
             >
               Reservar
