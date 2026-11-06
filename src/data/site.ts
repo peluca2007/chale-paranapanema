@@ -382,8 +382,12 @@ export const food: FoodPlace[] = [
   { name: 'Ice & Pizza', kind: 'Pizzaria e sorveteria', phone: '(14) 99639-9008', address: 'Rua Francisco Alves de Almeida, 195, Centro', photo: 'food-icepizza.jpg', alt: 'Pizza e kit de pizzaria' },
   { name: 'Bom Pernil & Burger', kind: 'Lanchonete', phone: '(14) 99788-4439', address: 'Praça da Matriz', photo: 'food-bompernil.jpg', alt: 'Fachada iluminada do Bom Pernil & Burger' },
   { name: 'Edi Dog', kind: 'Lanchonete', phone: '(14) 99664-2406', address: 'Rua Francisco Alves de Almeida, 936, Centro', photo: 'food-edidog.jpg', alt: 'Cachorro-quente prensado recheado' },
-  { name: 'Jacobs Esfiharia', kind: 'Esfiharia delivery', phone: '(14) 99894-2333', note: 'Delivery', photo: 'food-jacobs.jpg', alt: 'Esfiha de carne e esfiha doce de chocolate' },
-  { name: 'Pastelaria da Cesane', kind: 'Pastelaria', phone: '(14) 99671-2040', photo: 'food-pastelaria.jpg', alt: 'Logo da Pastelaria da Cesane' },
+  { name: 'Restaurante Cantinho da Gê', kind: 'Prato feito e marmitex', phone: '(14) 99639-9008', address: 'Rua Capitão Totó Duarte, 225, Centro', photo: 'food-cantinho.jpg', alt: 'Prato feito com bife, arroz, feijão, salada e fritas' },
+  { name: 'Marmitão', kind: 'Self-service por quilo, buffet livre e marmitex', phone: '(14) 99758-7394', address: 'Rua Francisco Alves de Almeida, 1229, Centro', photo: 'food-mesa.jpg', alt: 'Mesa com carnes, fritas, arroz e saladas' },
+  { name: 'Império Center', kind: 'Açaí, salgados, chocolateria, choperia, som ao vivo e lojas', phone: '(14) 99751-2937', address: 'Praça da Matriz', photo: 'food-imperio.jpg', alt: 'Praça de alimentação do Império Center' },
+  { name: 'Fascinatto', kind: 'Sorvetes e açaí', phone: '(14) 99666-1435', address: 'Rua Bonsucesso, 221, Centro', photo: 'food-fascinatto.jpg', alt: 'Área externa da sorveteria Fascinatto' },
+  { name: "Jacob's Esfiharia", kind: 'Esfiha salgada ou doce, delivery', phone: '(14) 99894-2333', note: 'Delivery', photo: 'food-jacobs.jpg', alt: 'Esfiha de carne e esfiha doce de chocolate' },
+  { name: 'Pastelaria da Cesani', kind: 'Pastel e bebidas', phone: '(14) 99671-2040', address: 'Rua Avaré, 300, Centro', photo: 'food-pastelaria.jpg', alt: 'Logo da Pastelaria da Cesani' },
   { name: 'Graal Holandês', kind: 'Posto de combustível e restaurante', phone: '(14) 99759-2735', address: 'Rodovia Raposo Tavares, km 245', note: 'A 11 km do chalé', photo: 'food-graal.jpg', alt: 'Buffet de carnes e linguiças do Graal' },
 ]
 

@@ -19,7 +19,7 @@ export function Food() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="relative mb-10 hidden overflow-hidden rounded-[2rem] shadow-2xl shadow-ink/20 lg:block"
           >
-            <Img name="food-mesa.jpg" alt="Mesa farta com carnes, batata frita, arroz e saladas" className="aspect-[16/9] w-full object-cover" />
+            <Img name="food-graal.jpg" alt="Buffet de carnes e linguiças" className="aspect-[16/9] w-full object-cover object-[50%_45%]" />
             <span className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-ink backdrop-blur">
               <Utensils size={16} className="text-terra-600" aria-hidden /> {food.length} lugares para conhecer
             </span>
